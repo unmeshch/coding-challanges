@@ -2,7 +2,7 @@
 /**
  * Problem statement : Given a string S and another string sub, find number of occurrences of sub in S
  * Example : S = "abcdxabcabcwegab", sub = "abc"
- * output = 4 (as abc is present 3 times in the given string)
+ * output = 3 (as abc is present 3 times in the given string)
  *
  * @author Unmesh Chougule
  */
