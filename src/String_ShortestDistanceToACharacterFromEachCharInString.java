@@ -10,7 +10,7 @@ import java.util.List;
  * Example : Input S = "abcdxydz", C = 'd'
  * solution = {3, 2, 1, 0, 1, 1, 0, 1}
  *
- * As of now solution has O(2n) time complexity
+ * One solution has O(3n) time complexity while solution2 has O(2n)
  *
  * @author Unmesh Chougule
  */
@@ -19,17 +19,23 @@ public class String_ShortestDistanceToACharacterFromEachCharInString {
     public static void main(String[] args) {
         final String input = "LoveToCode";
         int[] arr = new int[input.length()];
+        int[] arr2 = new int[input.length()];
         char specificChar = 'e';
 
-        solution(arr, input, specificChar);
-
         System.out.println("Input string : "+input);
-        System.out.printf("Output wrt '%s' : ",specificChar);
+
+        solution(arr, input, specificChar);
+        System.out.printf("Output wrt '%s' using solution1 : ",specificChar);
         ElementsPrinter.print(arr);
+
+        solution2(arr2, input, specificChar);
+        System.out.printf("Output wrt '%s' using solution2 : ",specificChar);
+        ElementsPrinter.print(arr2);
     }
 
     /**
      * Solution for the challenge, returns array with -1 in all places if no character occurrence in the string
+     * solution with O(3n) time complexity and O(2n) space complexity
      * @param arr output answer array
      * @param input string given
      * @param chr specific character
@@ -72,6 +78,49 @@ public class String_ShortestDistanceToACharacterFromEachCharInString {
                     prevNearestOccurrence = nextNearestOccurrence;
                     nextNearestOccurrence = occurrenceList.get(occurrenceListCounter);
                 }
+            }
+        }
+    }
+
+    /**
+     * Solution for the challenge, returns array with -1 in all places if no character occurrence in the string
+     * solution with O(2n) time complexity and has O(2n) space complexity
+     * @param arr output answer array
+     * @param input string given
+     * @param chr specific character
+     */
+    public static void solution2(final int[] arr, final String input, final char chr) {
+        if (input == null || input.trim().length() == 0) {
+            return;
+        }
+
+        int[] tempArr = new int[arr.length];
+
+        int leftNearestOccurrenceFound = -1;
+        //traverse from left to right and get distance of character from left nearest occurrence only
+        for (int i=0; i<arr.length; i++) {
+            if (input.charAt(i) == chr) {
+                leftNearestOccurrenceFound = i;
+            }
+            if (leftNearestOccurrenceFound > -1) {
+                tempArr[i] = i - leftNearestOccurrenceFound;
+            } else {
+                tempArr[i] = Integer.MAX_VALUE;
+            }
+        }
+
+        int rightNearestOccurrenceFound = -1;
+        //traverse from right to left to get distance of character from right nearest occurrence
+        for (int i=arr.length-1; i>=0; i--) {
+            if (input.charAt(i) == chr) {
+                rightNearestOccurrenceFound = i;
+            }
+
+            if (rightNearestOccurrenceFound > -1) {
+                int diffFromRightNearestOccurrenceFound = rightNearestOccurrenceFound - i;
+                arr[i] = Math.min(tempArr[i], diffFromRightNearestOccurrenceFound);
+            } else {
+                arr[i] = -1;
             }
         }
     }

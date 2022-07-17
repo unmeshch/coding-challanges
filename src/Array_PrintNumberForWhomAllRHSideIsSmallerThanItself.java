@@ -25,7 +25,7 @@ public class Array_PrintNumberForWhomAllRHSideIsSmallerThanItself {
         }
 
         int maxNumberTillNow = 0;
-        //travers from last and maintain the largest numbers found to compare each number with it
+        //traverse from last and maintain the largest number found to compare each number with it
         for (int i=arr.length-1; i>=0; i--) {
             int currNum = arr[i];
             if (currNum >= maxNumberTillNow) {
