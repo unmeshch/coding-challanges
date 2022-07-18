@@ -10,8 +10,6 @@ import java.util.List;
  * Example : Input S = "abcdxydz", C = 'd'
  * solution = {3, 2, 1, 0, 1, 1, 0, 1}
  *
- * One solution has O(3n) time complexity while solution2 has O(2n)
- *
  * @author Unmesh Chougule
  */
 public class String_ShortestDistanceToACharacterFromEachCharInString {
@@ -35,7 +33,6 @@ public class String_ShortestDistanceToACharacterFromEachCharInString {
 
     /**
      * Solution for the challenge, returns array with -1 in all places if no character occurrence in the string
-     * solution with O(3n) time complexity and O(2n) space complexity
      * @param arr output answer array
      * @param input string given
      * @param chr specific character
@@ -84,7 +81,6 @@ public class String_ShortestDistanceToACharacterFromEachCharInString {
 
     /**
      * Solution for the challenge, returns array with -1 in all places if no character occurrence in the string
-     * solution with O(2n) time complexity and has O(2n) space complexity
      * @param arr output answer array
      * @param input string given
      * @param chr specific character
@@ -119,6 +115,8 @@ public class String_ShortestDistanceToACharacterFromEachCharInString {
             if (rightNearestOccurrenceFound > -1) {
                 int diffFromRightNearestOccurrenceFound = rightNearestOccurrenceFound - i;
                 arr[i] = Math.min(tempArr[i], diffFromRightNearestOccurrenceFound);
+            } else if (leftNearestOccurrenceFound > -1) {
+                arr[i] = tempArr[i];
             } else {
                 arr[i] = -1;
             }

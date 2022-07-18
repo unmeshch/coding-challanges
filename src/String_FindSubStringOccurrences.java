@@ -3,6 +3,7 @@
  * Problem statement : Given a string S and another string sub, find number of occurrences of sub in S
  * Example : S = "abcdxabcabcwegab", sub = "abc"
  * output = 3 (as abc is present 3 times in the given string)
+ * Assume we do not need to consider overlapping matches e.g. find aa in aaa -> count 1 only
  *
  * @author Unmesh Chougule
  */
@@ -43,5 +44,19 @@ public class String_FindSubStringOccurrences {
         }
 
         return occurrenceCount;
+    }
+
+    /**
+     * Returns number of occurrences of given substring in the input string - suing inbuilt replace method
+     * @param input given string
+     * @param sub sub string to be checked for
+     * @return number of occurrences
+     */
+    public static int solution2(final String input, final String sub) {
+        if (input == null || input.trim().length() == 0) {
+            return 0;
+        }
+        return (input.length() - input.replace(sub, "").length()) / sub.length();
+
     }
 }
