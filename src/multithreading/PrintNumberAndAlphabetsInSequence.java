@@ -22,7 +22,7 @@ public class PrintNumberAndAlphabetsInSequence {
     }
 
     /**
-     * Gives logic to Print number which waits for next alphabet to print before printing next number again
+     * Gives logic to produce numbers, which are published in the queue
      * @return lambda expression of the expected logic
      */
     public Runnable getNumberPrinter(final BlockingQueue<Integer> queue) {
@@ -43,7 +43,7 @@ public class PrintNumberAndAlphabetsInSequence {
     }
 
     /**
-     * Gives logic to Print alphabet which waits for next number to print before printing next alphabet again
+     * Gives logic to Print alphabet which waits for next number to be available in the queue before printing next alphabet again
      * @return lambda expression of the expected logic
      */
     public Runnable getAlphabetPrinter(final BlockingQueue<Integer> queue) {
