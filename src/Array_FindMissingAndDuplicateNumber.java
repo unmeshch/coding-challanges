@@ -10,7 +10,6 @@ public class Array_FindMissingAndDuplicateNumber {
 
     public static void main(String[] args) {
         int[] arr = {4, 3, 6, 2, 5, 6};
-        System.out.println(f);
         solution(arr);
     }
 
